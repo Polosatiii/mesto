@@ -1,0 +1,15 @@
+.user-gallery__like-b{
+  max-width: 22px;
+  min-height: 19px;
+  background-image: url(../../../images/like_b_dis.svg);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: contain;
+  border: 0;
+  margin: 0;
+}
+
+.user-gallery__like-b:hover{
+  background-image: url(../../../images/like_b_hover.svg);
+
+}

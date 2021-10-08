@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <title>Проект МЕСТО</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+
+  <header class="header">
+    <img src="../mesto/images/logo.svg" alt="Место" class="logo">
+  </header>
+
+  <main class="content">
+
+    <section class="user">
+
+      <div class="user__photo">
+        <img src="../mesto/images/mainimage.jpg" alt="Фото" class="user__image">
+      </div>
+      <div class="user__description">
+        <h1 class="user__name">Жак-Ив Кусто</h1>
+        <button class="user__add-info"></button>
+        <h2 class="user__info">Исследователь океана</h2>
+      </div>
+      <button class="user__add-photo"></button>
+    </section>
+
+    <section class="user-gallery">
+      <ul class="user-gallery__items">
+        <li class="user-gallery__item">
+          <img src="./images/kar1.jpg" alt="Карачаевск" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Карачаевск</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+        <li class="user-gallery__item">
+          <img src="./images/elbrus1.png" alt="Гора Эльбрус" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Гора Эльбрус</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+        <li class="user-gallery__item">
+          <img src="./images/donb1.png" alt="Домбай" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Домбай</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+        <li class="user-gallery__item">
+          <img src="./images/elbrus1.png" alt="Гора Эльбрус" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Гора Эльбрус</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+        <li class="user-gallery__item">
+          <img src="./images/donb1.png" alt="Домбай" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Домбай</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+        <li class="user-gallery__item">
+          <img src="./images/kar1.jpg" alt="Карачаево-Черкессия" class="user-gallery__photo">
+          <div class="user-gallery__caption">
+            <h3 class="user-gallery__photo-name">Карачаево-Черкессия</h3>
+            <div class="user-gallery__like-b"></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__project-name">&copy;2021 Mesto Russia</p>
+  </footer>
+
+
+  <div class="popup">
+    <div class="popup__content">
+      <button class="popup__close"></button>
+      <h4 class="popup__info">Редактировать профиль</h4>
+      <form class="popup__form">
+        <input type="text" class="popup__user-name">
+        <input type="text" class="popup__user-info">
+        <button class="popup__button-submit"><span class="popup__text-submit">Сохранить</span></button>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="pages/index.js"></script>
+
+</body>
+
+</html>

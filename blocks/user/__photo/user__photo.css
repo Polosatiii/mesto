@@ -1,0 +1,13 @@
+
+.user__photo{
+  width: 168px;
+  height: 127px;
+
+}
+
+@media screen and (max-width: 1279px) {
+  .user__photo{
+    display: flex;
+    justify-content: center;
+  }
+}

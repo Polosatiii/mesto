@@ -1,0 +1,10 @@
+
+.user-gallery__caption{
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 150px 22px;
+  max-width: 246px;
+  padding: 25px 15px 20px 15px;
+  margin: 0;
+
+}

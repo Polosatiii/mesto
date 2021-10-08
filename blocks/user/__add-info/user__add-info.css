@@ -1,0 +1,22 @@
+.user__add-info{
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFFFFF;
+  background-color:rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/Vector1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  align-self: center;
+  opacity: 1;
+}
+
+.user__add-info:hover{
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 1279px) {
+.user__add-info{
+  width: 18px;
+  height: 18px;
+  }
+}
