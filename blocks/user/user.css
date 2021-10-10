@@ -2,7 +2,7 @@
   max-width: 880px;
   display: flex;
   justify-content: flex-start;
-  padding: 40px 200px 0 200px;
+  margin: 40px 200px 0 200px;
 
 }
 
@@ -10,7 +10,7 @@
   .user{
     max-width: 282px;
     min-height: fit-content;
-    padding: 42px 19px 0 19px;
+    margin: 42px 19px 0 19px;
     flex-direction: column;
     align-items: center;
   }

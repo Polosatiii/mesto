@@ -1,5 +1,6 @@
 
 .user__photo{
+  display: block;
   width: 168px;
   height: 127px;
 

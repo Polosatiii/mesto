@@ -13,6 +13,7 @@
     margin-top: 22px;
     grid-template-columns: minmax(min-content, max-content) 30px;
     grid-template-rows: repeat(2, 1fr);
+    justify-items: center;
     gap: 0 10px;
   }
 }
