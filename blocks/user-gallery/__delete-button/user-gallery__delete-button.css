@@ -1,0 +1,17 @@
+.user-gallery__delete-button{
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../images/Trash.svg);
+  display: block;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+
+
+}

@@ -1,7 +1,9 @@
 
 .user-gallery__photo{
+  height: 282px;
   width: 100%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  cursor: pointer;
 
 }

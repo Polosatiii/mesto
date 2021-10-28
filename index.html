@@ -10,7 +10,6 @@
 </head>
 
 <body class="page">
-
   <header class="header">
     <img src="./images/logo.svg" alt="Место" class="logo">
   </header>
@@ -28,50 +27,7 @@
     </section>
 
     <section class="user-gallery">
-      <ul class="user-gallery__items">
-        <li class="user-gallery__item">
-          <img src="./images/kar1.jpg" alt="Карачаевск" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Карачаевск</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-        <li class="user-gallery__item">
-          <img src="./images/elbrus1.png" alt="Гора Эльбрус" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Гора Эльбрус</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-        <li class="user-gallery__item">
-          <img src="./images/donb1.png" alt="Домбай" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Домбай</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-        <li class="user-gallery__item">
-          <img src="./images/elbrus1.png" alt="Гора Эльбрус" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Гора Эльбрус</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-        <li class="user-gallery__item">
-          <img src="./images/donb1.png" alt="Домбай" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Домбай</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-        <li class="user-gallery__item">
-          <img src="./images/kar1.jpg" alt="Карачаево-Черкессия" class="user-gallery__photo">
-          <div class="user-gallery__caption">
-            <h3 class="user-gallery__photo-name">Карачаево-Черкессия</h3>
-            <button type="button" class="user-gallery__like-b"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="user-gallery__items"></ul>
     </section>
 
 
@@ -93,6 +49,44 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_add-card">
+    <div class="popup__content">
+      <button type="button" class="popup__close popup__close-add"></button>
+      <h4 class="popup__info">Новое место</h4>
+      <form name="add" class="popup__form popup__form_add">
+        <input type="text" placeholder="Название" name="name" class="popup__input popup__input_element_card-name">
+        <input type="text" placeholder="Ссылка на изображение" name="link"
+          class="popup__input popup__input_element_card-link">
+        <button type="submit" class="popup__button-submit pupup__button-save">Создать</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="popup popup_full-size-photo">
+    <div class="popup__container-photo">
+      <button type="button" class="popup__close popup__close-full"></button>
+      <figure class="popup__figure">
+        <img src="#" class="popup__image" alt="Image">
+        <figcaption class="popup__image-caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+
+
+  <template class="template">
+    <li class="user-gallery__item">
+      <button type="button" class="user-gallery__delete-button"></button>
+      <img src="#" alt="Фото" class="user-gallery__photo">
+      <div class="user-gallery__caption">
+        <h3 class="user-gallery__photo-name"></h3>
+        <button type="button" class="user-gallery__like-b"></button>
+      </div>
+    </li>
+  </template>
 
 
   <script src="scripts/index.js"></script>

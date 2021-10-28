@@ -1,4 +1,5 @@
 .user-gallery__item{
+  position: relative;
   max-width: 282px;
   min-height: 282px;
   border-radius: 15px;
