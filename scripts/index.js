@@ -1,3 +1,15 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  inputErrorClass: 'popup__input_type_error',
+  submitBtSelector: '.popup__button-submit',
+  submitBtError: 'popup__button-submit_invalid',
+}
+
+
+enableValidation(config)
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -56,6 +68,8 @@ const bigImage = document.querySelector('.popup__image');
 const popupPhoto = document.querySelector('.popup_full-size-photo');
 const imageCaption = document.querySelector('.popup__image-caption');
 const popupCloseFull = document.querySelector('.popup__close-full');
+const popups = [...document.querySelectorAll('.popup')];
+
 
 
 
@@ -70,6 +84,41 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_is-open')
 }
+
+
+popupEditProfile.addEventListener('click', function (event) {
+  if (event.target.classList.contains('popup_is-open')) {
+    closePopup(popupEditProfile)
+  };
+
+})
+
+popupAddPhoto.addEventListener('click', function (event) {
+  if (event.target.classList.contains('popup_is-open')) {
+    closePopup(popupAddPhoto)
+  };
+
+})
+
+popupPhoto.addEventListener('click', function (event) {
+  if (event.target.classList.contains('popup_is-open')) {
+    closePopup(popupPhoto)
+  };
+
+})
+
+function closePopupEscape(event) {
+  if (event.key == 'Escape') {
+    const popupOpen = popups.filter(popup => {
+      return popup.classList.contains('popup_is-open');
+    });
+    popupOpen.forEach(popup => {
+      closePopup(popup);
+    })
+  }
+}
+
+document.addEventListener('keydown', closePopupEscape)
 
 
 
@@ -184,3 +233,5 @@ function submitForm(event) {
 
 
 formSubmit.addEventListener('submit', submitForm);
+
+
