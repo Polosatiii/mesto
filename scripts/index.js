@@ -1,13 +1,15 @@
-const config = {
+import {FormValidator} from './FormValidator.js';
+import {Card} from './Card.js';
+
+  const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   inputErrorClass: 'popup__input_type_error',
-  submitBtSelector: '.popup__button-submit',
-  submitBtError: 'popup__button-submit_invalid',
+  submitButtonSelector: '.popup__button-submit',
+  inactivButtonClass: '.popup__button-submit_invalid',
+  errorClass: '.popup__error_visible'
 }
 
-
-enableValidation(config)
 
 
 const initialCards = [
@@ -39,6 +41,13 @@ const initialCards = [
 
 
 
+
+
+
+
+
+
+
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButtonEditProfile = document.querySelector('.popup__close_edit');
 const editButton = document.querySelector('.user__add-info');
@@ -63,21 +72,42 @@ const formAddCard = document.querySelector('.popup_add-card');
 const inputCardName = document.querySelector('.popup__input_element_card-name');
 const inputCardLink = document.querySelector('.popup__input_element_card-link');
 
-const imageClick = document.querySelector('.user-gallery__photo');
-const bigImage = document.querySelector('.popup__image');
-const popupPhoto = document.querySelector('.popup_full-size-photo');
-const imageCaption = document.querySelector('.popup__image-caption');
+export const imageClick = document.querySelector('.user-gallery__photo');
+export const bigImage = document.querySelector('.popup__image');
+export const popupPhoto = document.querySelector('.popup_full-size-photo');
+export const imageCaption = document.querySelector('.popup__image-caption');
 const popupCloseFull = document.querySelector('.popup__close-full');
-const popups = [...document.querySelectorAll('.popup')];
+const popups = [...document.querySelectorAll('.popup')]
 
 
+const addCardForm = popupAddPhoto.querySelector('.popup__form')
+const editForm = popupEditProfile.querySelector('.popup__form')
+
+
+const editProfileValidator = new FormValidator(config, editForm);
+const addCardValidatore = new FormValidator(config, addCardForm);
+
+editProfileValidator.enableValidation()
+addCardValidatore.enableValidation()
+
+
+
+const prependeCard = (data) => {
+
+  const card = new Card(data, '.template')
+  const cardElement = card.createCard(data)
+
+
+  listElement.prepend(cardElement);
+
+};
 
 
 
 
 initialCards.forEach(prependeCard);
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_is-open');
   document.addEventListener('keydown', closePopupEscape)
 };
@@ -118,48 +148,6 @@ function closePopupEscape(event) {
       closePopup(popup);
     })
   }
-}
-
-
-
-
-
-function createCard(item) {
-
-  const element = templateItem.querySelector('.user-gallery__item').cloneNode(true);
-  element.querySelector('.user-gallery__photo-name').innerText = item.name;
-  element.querySelector('.user-gallery__photo').alt = item.name;
-  element.querySelector('.user-gallery__photo').src = item.link;
-
-
-  element.querySelector('.user-gallery__like-b').addEventListener('click', (event) => {
-    event.target.classList.toggle('user-gallery__like-b_active');
-  });
-
-
-
-  element.querySelector('.user-gallery__delete-button').addEventListener('click', (event) => {
-    event.target.closest('.user-gallery__item').remove();
-  }
-  )
-
-  element.querySelector('.user-gallery__photo').addEventListener('click', (event) => {
-    openPopup(popupPhoto)
-    bigImage.src = item.link;
-    bigImage.alt = item.name;
-    imageCaption.textContent = item.name;
-
-  })
-
-
-  return element;
-};
-
-function prependeCard(item) {
-
-  const element = createCard(item);
-  listElement.prepend(element);
-
 }
 
 
@@ -240,5 +228,8 @@ function submitForm(event) {
 
 
 formSubmit.addEventListener('submit', submitForm);
+
+
+
 
 
