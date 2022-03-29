@@ -59,7 +59,7 @@
       <button type="button" class="popup__close popup__close-add"></button>
       <h4 class="popup__info">Новое место</h4>
       <form name="add" class="popup__form popup__form_add" novalidate>
-        <input type="text" placeholder="Название" name="name" id="place-name"
+        <input type="text" placeholder="Название" name="name" minlength="2" maxlength="40" id="place-name"
           class="popup__input popup__input_element_card-name" required>
         <span class="popup__error" id="place-name-error"></span>
         <input type="url" placeholder="Ссылка на изображение" name="link" id="link-url"

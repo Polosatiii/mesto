@@ -6,8 +6,8 @@ import {Card} from './Card.js';
   inputSelector: '.popup__input',
   inputErrorClass: 'popup__input_type_error',
   submitButtonSelector: '.popup__button-submit',
-  inactivButtonClass: '.popup__button-submit_invalid',
-  errorClass: '.popup__error_visible'
+  inactiveButtonClass: 'popup__button-submit_invalid',
+  errorClass: 'popup__error_visible'
 }
 
 
@@ -41,16 +41,9 @@ const initialCards = [
 
 
 
-
-
-
-
-
-
-
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButtonEditProfile = document.querySelector('.popup__close_edit');
-const editButton = document.querySelector('.user__add-info');
+const userEditButton = document.querySelector('.user__add-info');
 const formSubmit = document.querySelector('.popup__form');
 
 const nameField = document.querySelector('.popup__input_element_user-name')
@@ -95,17 +88,23 @@ addCardValidatore.enableValidation()
 const prependeCard = (data) => {
 
   const card = new Card(data, '.template')
-  const cardElement = card.createCard(data)
-
-
-  listElement.prepend(cardElement);
-
+  
+  return card.getCardElement();
 };
 
+function renderiniinitialCards() {
+  initialCards.forEach(addCardPrepende);  
+}
 
+renderiniinitialCards()
 
+function addCardAppend(data) {
+  listElement.append(prependeCard(data));
+}
 
-initialCards.forEach(prependeCard);
+function addCardPrepende(data) {
+  listElement.prepend(prependeCard(data));
+}
 
 export function openPopup(popup) {
   popup.classList.add('popup_is-open');
@@ -126,6 +125,7 @@ popupEditProfile.addEventListener('click', function (event) {
 })
 
 popupAddPhoto.addEventListener('click', function (event) {
+  addCardValidatore.toggleButtonState()
   if (event.target.classList.contains('popup_is-open')) {
     closePopup(popupAddPhoto)
   };
@@ -150,51 +150,33 @@ function closePopupEscape(event) {
   }
 }
 
+const handleCardFormSubmit = (evt) => {
+  evt.preventDefault();
+  const card = prependeCard({
+    name: inputCardName.value,
+    link: inputCardLink.value
+  });
 
 
-function addCard(event) {
-  event.preventDefault();
+  addCardValidatore.toggleButtonState()
 
-  openPopup(popupAddPhoto);
-
-  const name = inputCardName.value;
-  const link = inputCardLink.value;
-  const item = {
-    name: name,
-    link: link
-  }
-
-  prependeCard(item);
-
-
-  event.target.reset();
-
-  const buttonSubmit = document.querySelector('.popup__button-save');
-
-  buttonSubmit.disabled = !formSubmit.checkValidity();
-  buttonSubmit.classList.toggle(config.submitBtError, !formSubmit.checkValidity());
+  listElement.prepend(card)
+  
+  
 
   closePopup(popupAddPhoto);
-
-}
-
-formAddCard.addEventListener('submit', addCard)
+  
+};
 
 
+formAddCard.addEventListener('submit', handleCardFormSubmit)
 
 
-
-
-
-
-
-
-
-
-editButton.addEventListener('click', function openEditprofile() {
-  openPopup(popupEditProfile)
+userEditButton.addEventListener('click', function openEditprofile() {
   nameField.value = userName.textContent;
-  infoField.value = userInfo.textContent;
+  infoField.value = userInfo.textContent 
+
+  openPopup(popupEditProfile)
 
 });
 
@@ -219,7 +201,7 @@ function submitForm(event) {
 
   userInfo.textContent = infoField.value;
 
-
+  editProfileValidator.toggleButtonState()
 
   closePopup(popupEditProfile);
 
@@ -228,7 +210,6 @@ function submitForm(event) {
 
 
 formSubmit.addEventListener('submit', submitForm);
-
 
 
 
