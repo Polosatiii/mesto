@@ -1,5 +1,6 @@
-.popup__content{
+.popup__content {
   max-width: 430px;
+  max-height: 100%;
   background-color: white;
   border-radius: 10px;
   position: relative;
@@ -10,3 +11,4 @@
     max-width: 282px;
   }
 }
+

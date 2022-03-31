@@ -73,12 +73,12 @@ const popupCloseFull = document.querySelector('.popup__close-full');
 const popups = [...document.querySelectorAll('.popup')]
 
 
-const addCardForm = popupAddPhoto.querySelector('.popup__form')
+const CardForm = popupAddPhoto.querySelector('.popup__form')
 const editForm = popupEditProfile.querySelector('.popup__form')
 
 
 const editProfileValidator = new FormValidator(config, editForm);
-const addCardValidatore = new FormValidator(config, addCardForm);
+const addCardValidatore = new FormValidator(config, CardForm);
 
 editProfileValidator.enableValidation()
 addCardValidatore.enableValidation()
