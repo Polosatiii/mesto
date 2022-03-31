@@ -52,8 +52,8 @@ const infoField = document.querySelector('.popup__input_element_user-info')
 const userName = document.querySelector('.user__name')
 const userInfo = document.querySelector('.user__info')
 
-const addPhotoButton = document.querySelector('.user__add-photo')
-const addPhotoClose = document.querySelector('.popup__close-add')
+const photoAddButton = document.querySelector('.user__add-photo')
+const photoAddClose = document.querySelector('.popup__close-add')
 const popupAddPhoto = document.querySelector('.popup_add-card')
 
 
@@ -180,13 +180,13 @@ userEditButton.addEventListener('click', function openEditprofile() {
 
 });
 
-addPhotoButton.addEventListener('click', function () { openPopup(popupAddPhoto) });
+photoAddButton.addEventListener('click', function () { openPopup(popupAddPhoto) });
 
 
 
 
 popupCloseButtonEditProfile.addEventListener('click', function () { closePopup(popupEditProfile) });
-addPhotoClose.addEventListener('click', function () { closePopup(popupAddPhoto) });
+photoAddClose.addEventListener('click', function () { closePopup(popupAddPhoto) });
 popupCloseFull.addEventListener('click', function () { closePopup(popupPhoto) });
 
 
