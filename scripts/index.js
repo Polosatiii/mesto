@@ -77,11 +77,11 @@ const CardForm = popupAddPhoto.querySelector('.popup__form')
 const editForm = popupEditProfile.querySelector('.popup__form')
 
 
-const editProfileValidator = new FormValidator(config, editForm);
-const addCardValidatore = new FormValidator(config, CardForm);
+const profileValidator = new FormValidator(config, editForm);
+const cardValidatore = new FormValidator(config, CardForm);
 
-editProfileValidator.enableValidation()
-addCardValidatore.enableValidation()
+profileValidator.enableValidation()
+cardValidatore.enableValidation()
 
 
 
@@ -125,7 +125,7 @@ popupEditProfile.addEventListener('click', function (event) {
 })
 
 popupAddPhoto.addEventListener('click', function (event) {
-  addCardValidatore.toggleButtonState()
+  cardValidatore.toggleButtonState()
   if (event.target.classList.contains('popup_is-open')) {
     closePopup(popupAddPhoto)
   };
@@ -158,7 +158,7 @@ const handleCardFormSubmit = (evt) => {
   });
 
 
-  addCardValidatore.toggleButtonState()
+  cardValidatore.toggleButtonState()
 
   listElement.prepend(card)
   
@@ -201,7 +201,7 @@ function submitForm(event) {
 
   userInfo.textContent = infoField.value;
 
-  editProfileValidator.toggleButtonState()
+  profileValidator.toggleButtonState()
 
   closePopup(popupEditProfile);
 

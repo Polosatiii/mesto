@@ -8,3 +8,12 @@
   margin: 0;
   margin-left: 36px;
 }
+
+
+
+
+@media screen and (max-width: 1279px){
+  .popup__error{
+    margin-left: 21px;
+  }
+}
