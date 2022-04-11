@@ -1,5 +1,12 @@
-import {FormValidator} from './FormValidator.js';
-import {Card} from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+import { Section } from './Section.js'
+import { PopupWithImage } from './PopupWithImage.js'
+import { PopupWithForm } from './PopupWithForm.js'
+import { UserInfo } from './UserInfo.js'
+
+
+import '../pages/index.css';
 
   const config = {
   formSelector: '.popup__form',
@@ -40,7 +47,7 @@ const initialCards = [
 ];
 
 
-
+export const ESC_KEYCODE = 27;
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButtonEditProfile = document.querySelector('.popup__close_edit');
 const userEditButton = document.querySelector('.user__add-info');
@@ -59,8 +66,6 @@ const popupAddPhoto = document.querySelector('.popup_add-card')
 
 
 const listElement = document.querySelector('.user-gallery__items');
-const templateItem = document.querySelector('.template').content;
-const deleteCardButton = document.querySelector('.user-gallery__delete-button');
 const formAddCard = document.querySelector('.popup_add-card');
 const inputCardName = document.querySelector('.popup__input_element_card-name');
 const inputCardLink = document.querySelector('.popup__input_element_card-link');
@@ -87,130 +92,69 @@ cardValidatore.enableValidation()
 
 const prependeCard = (data) => {
 
-  const card = new Card(data, '.template')
-  
+  const card = new Card(data, '.template', () => {
+    ImagePopup.open(data.name, data.link)
+  })
   return card.getCardElement();
 };
 
-function renderiniinitialCards() {
-  initialCards.forEach(addCardPrepende);  
-}
-
-renderiniinitialCards()
-
-function addCardAppend(data) {
-  listElement.append(prependeCard(data));
-}
 
 function addCardPrepende(data) {
   listElement.prepend(prependeCard(data));
 }
 
-export function openPopup(popup) {
-  popup.classList.add('popup_is-open');
-  document.addEventListener('keydown', closePopupEscape)
-};
 
-function closePopup(popup) {
-  popup.classList.remove('popup_is-open')
-  document.removeEventListener('keydown', closePopupEscape)
-}
-
-
-popupEditProfile.addEventListener('click', function (event) {
-  if (event.target.classList.contains('popup_is-open')) {
-    closePopup(popupEditProfile)
-  };
-
-})
-
-popupAddPhoto.addEventListener('click', function (event) {
-  cardValidatore.toggleButtonState()
-  if (event.target.classList.contains('popup_is-open')) {
-    closePopup(popupAddPhoto)
-  };
-
-})
-
-popupPhoto.addEventListener('click', function (event) {
-  if (event.target.classList.contains('popup_is-open')) {
-    closePopup(popupPhoto)
-  };
-
-})
-
-function closePopupEscape(event) {
-  if (event.key == 'Escape') {
-    const popupOpen = popups.filter(popup => {
-      return popup.classList.contains('popup_is-open');
-    });
-    popupOpen.forEach(popup => {
-      closePopup(popup);
-    })
-  }
-}
-
-const handleCardFormSubmit = (evt) => {
-  evt.preventDefault();
+const handleCardFormSubmit = (data) => {
   const card = prependeCard({
-    name: inputCardName.value,
-    link: inputCardLink.value
-  });
+    name: data['place-name'],
+    link: data.link
+  })
 
+  section.addItem(card)
 
   cardValidatore.toggleButtonState()
-
-  listElement.prepend(card)
   
-  
-
-  closePopup(popupAddPhoto);
+  addCardPopup.close()
   
 };
+
+const submitEditForm = (data) => { 
+  const { name, info } = data
+  userInform.setUserInfo(name, info)
+  profileValidator.toggleButtonState()
+  editProfilePopup.close();
+
+}
+
+
+
+const section = new Section ({ items: initialCards, renderer: addCardPrepende}, '.user-gallery__items');
+const ImagePopup = new PopupWithImage('.popup_full-size-photo')
+const addCardPopup = new PopupWithForm('.popup_add-card', handleCardFormSubmit)
+const editProfilePopup = new PopupWithForm('.popup_edit-profile', submitEditForm)
+
+ImagePopup.setEventListeners()
+addCardPopup.setEventListeners()
+editProfilePopup.setEventListeners()
+
+section.rendderItems()
+
+const userInform = new UserInfo ({ profileNameSelector: '.user__name', profileJobSelectore: '.user__info'})
 
 
 formAddCard.addEventListener('submit', handleCardFormSubmit)
 
 
-userEditButton.addEventListener('click', function openEditprofile() {
-  nameField.value = userName.textContent;
-  infoField.value = userInfo.textContent 
+userEditButton.addEventListener('click', () => {
+  const data = userInform.getUserInfo()
+  nameField.value = data.name
+  infoField.value = data.job
 
-  openPopup(popupEditProfile)
+  editProfilePopup.open()
 
 });
 
-photoAddButton.addEventListener('click', function () { openPopup(popupAddPhoto) });
-
-
-
-
-popupCloseButtonEditProfile.addEventListener('click', function () { closePopup(popupEditProfile) });
-photoAddClose.addEventListener('click', function () { closePopup(popupAddPhoto) });
-popupCloseFull.addEventListener('click', function () { closePopup(popupPhoto) });
-
-
-
-function submitForm(event) {
-
-  event.preventDefault()
-
-
-
-  userName.textContent = nameField.value;
-
-  userInfo.textContent = infoField.value;
-
-  profileValidator.toggleButtonState()
-
-  closePopup(popupEditProfile);
-
-}
-
-
-
-formSubmit.addEventListener('submit', submitForm);
-
+photoAddButton.addEventListener('click', function () { addCardPopup.open() });
 
 
 

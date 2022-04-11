@@ -1,11 +1,9 @@
-  import {bigImage, imageCaption, openPopup, popupPhoto}  from './index.js';
-
   export class Card {
-    constructor (data, cardTemplateSelector) {
-      this._templateItem = document.querySelector(cardTemplateSelector).content.querySelector('.user-gallery__item');
-     
-     this._name = data.name;
-     this._link = data.link;
+    constructor (data, cardTemplateSelector, handleImageClick) {
+    this._templateItem = document.querySelector(cardTemplateSelector).content.querySelector('.user-gallery__item');
+    this._handleImageClick = handleImageClick
+    this._name = data.name;
+    this._link = data.link;
     }
 
     _handleLike = () => {
@@ -21,15 +19,11 @@
     _setEventListeners() {
       this._likeButton.addEventListener('click', this._handleLike);
       this._deleteButton.addEventListener('click', this._handleDeleteCard);
-      this._cardElement.querySelector('.user-gallery__photo').addEventListener('click', (event) => {
-     openPopup(popupPhoto)
-     bigImage.src = this._link;
-     bigImage.alt = this._name;
-     imageCaption.textContent = this._name;
+      this._cardimage.addEventListener('click', this._handleImageClick);
    
-     })
+     }
    
-    }
+    
 
 
     getCardElement() {
@@ -52,7 +46,6 @@
    
      return this._cardElement;
    };
-
 
    }
 
