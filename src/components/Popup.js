@@ -1,8 +1,9 @@
-import { ESC_KEYCODE } from './index.js';
+ import { ESC_KEYCODE } from '../utils/const';
 
 export class Popup {
     constructor( popupSelector ){
         this._popup = document.querySelector(popupSelector)
+        this._closeButton =  this._popup.querySelector('.popup__close')
         this._handleEscClose = this._handleEscClose.bind(this)
     }
 
@@ -26,9 +27,8 @@ export class Popup {
     }
 
     setEventListeners(){
-       const closeButton =  this._popup.querySelector('.popup__close')
        this._popup.addEventListener('click', (e) => {
-           if(!e.target.closest('.popup__content') || e.target === closeButton){
+           if(!e.target.closest('.popup__content') || e.target === this._closeButton){
                this.close()
            }
        })

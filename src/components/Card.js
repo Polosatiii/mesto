@@ -1,9 +1,21 @@
   export class Card {
     constructor (data, cardTemplateSelector, handleImageClick) {
-    this._templateItem = document.querySelector(cardTemplateSelector).content.querySelector('.user-gallery__item');
     this._handleImageClick = handleImageClick
     this._name = data.name;
     this._link = data.link;
+
+    this._cardTemplateSelector =  cardTemplateSelector;
+    }
+
+
+    _getTemplate = () => {
+      const cardElement = document
+        .querySelector(this._cardTemplateSelector)
+        .content
+        .querySelector('.user-gallery__item')
+        .cloneNode(true);
+
+        return cardElement;
     }
 
     _handleLike = () => {
@@ -22,14 +34,11 @@
       this._cardimage.addEventListener('click', this._handleImageClick);
    
      }
-   
-    
-
 
     getCardElement() {
 
      //нашли элемент
-     this._cardElement = this._templateItem.cloneNode(true);
+     this._cardElement = this._getTemplate();
      this._likeButton = this._cardElement.querySelector('.user-gallery__like-b');
      this._cardimage = this._cardElement.querySelector('.user-gallery__photo')
      this._deleteButton = this._cardElement.querySelector('.user-gallery__delete-button')
