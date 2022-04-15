@@ -1,4 +1,5 @@
 
+import '../pages/index.css';
 import { initialCards } from '../utils/const'
 import { config } from '../utils/const'
 import { popupEditProfile, userEditButton, nameField, infoField, photoAddButton, popupAddPhoto, formAddCard } from '../utils/const'
@@ -9,7 +10,7 @@ import { PopupWithImage } from '../components/PopupWithImage'
 import { PopupWithForm } from '../components/PopupWithForm'
 import { UserInfo } from '../components/UserInfo'
 
-import '../pages/index.css';
+
 
 
 const section = new Section ({ items: initialCards, renderer: renderCard}, '.user-gallery__items')
