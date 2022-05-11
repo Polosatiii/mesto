@@ -17,6 +17,7 @@
 @import url(../blocks/user-gallery/__items/user-gallery__items.css);
 @import url(../blocks/user-gallery/__item/user-gallery__item.css);
 @import url(../blocks/user-gallery/__caption/user-gallery__caption.css);
+@import url(../blocks/user-gallery/__photo/user-gallery__photo-container.css);
 @import url(../blocks/user-gallery/__photo/user-gallery__photo.css);
 @import url(../blocks/user-gallery/__photo-name/user-gallery__photo-name.css);
 @import url(../blocks/user-gallery/__like-container.css);

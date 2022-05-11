@@ -16,30 +16,36 @@ import { api } from '../components/Api';
 
 let userId
 
-api.getProfile()
+api.getProfile() 
   .then(res => {
     console.log(res)
     userInfo.setUserInfo(res.name, res.about, res.avatar)
     userId = res._id
   })
+  .catch(console.log)
+  
+
 
 
  
 api.getCards()
   .then(cardList => {
-  cardList.forEach(data => {
+  cardList.reverse()
+  cardList.
+  forEach(data => {
     const card = createCard({
       name: data.name,
       link: data.link,
       likes: data.likes,
       id: data._id,
       userId: userId,
-      ownerId: data.owner._id
-    });
+      ownerId: data.owner._id    
+    })
     section.addItem(card)
+    
 })
 })
-
+  .catch(console.log)
 
 
 
@@ -47,6 +53,7 @@ const handleCardFormSubmit = (data) => {
   addCardPopup.setButtonText('Создание...')
   api.addCard(data['place-name'], data.link)
   .then(res=> {
+    console.log('res', res)
     const card = createCard({
       name: res.name,
       link: res.link,
@@ -60,19 +67,21 @@ const handleCardFormSubmit = (data) => {
   cardValidatore.toggleButtonState()
   addCardPopup.close()
 })
+.catch(console.log)
+.finally(() => addCardPopup.setButtonText('Создать')) 
 };
 
 const submitEditForm = (data) => { 
-  const { name, info, avatar} = data
+  const { name, info} = data
   editProfilePopup.setButtonText('Сохранение...')
-  api.editProfile(name, info, avatar)
+  api.editProfile(name, info)
   .then(() => {
-    userInfo.setUserInfo(name, info, avatar)
+    userInfo.setUserInfo(name, info)
+    profileValidator.toggleButtonState()
+    editProfilePopup.close();
   })
-  
-  profileValidator.toggleButtonState()
-  editProfilePopup.close();
-
+  .catch(console.log)
+  .finally(() => editProfilePopup.setButtonText('Сохранить')) 
 }
 
 const submitAvatarForm = (avatar) => { 
@@ -81,11 +90,11 @@ const submitAvatarForm = (avatar) => {
   .then(res => {
     console.log(res)
     userInfo.setAvatar(res.avatar)
+    avatarValidatore.toggleButtonState()
+    avatarPopup.close();
   })
-  avatarValidatore.toggleButtonState()
-  
-   avatarPopup.close();
-
+  .catch(console.log)
+  .finally(() => avatarPopup.setButtonText('Сохранить')) 
 }
 
 
@@ -105,6 +114,7 @@ const createCard = (data) => {
           card.deleteThisCard(res)
           confirmPopup.close()
         })
+        .catch(console.log)
       )},
       (id) => {
         if(card.isLiked()) {
@@ -116,6 +126,7 @@ const createCard = (data) => {
           .then(res => {
             card.setLikes(res.likes)
           })}
+          
       
       }
   )
@@ -131,13 +142,13 @@ function renderCard(data) {
 
 
 const avatarForm = popupAvatar.querySelector('.popup__form')
-const CardForm = popupAddPhoto.querySelector('.popup__form')
+const cardForm = popupAddPhoto.querySelector('.popup__form')
 const editForm = popupEditProfile.querySelector('.popup__form')
 
 
 
 const profileValidator = new FormValidator(config, editForm);
-const cardValidatore = new FormValidator(config, CardForm);
+const cardValidatore = new FormValidator(config, cardForm);
 const avatarValidatore = new FormValidator(config, avatarForm)
 
 profileValidator.enableValidation()
@@ -182,6 +193,6 @@ editProfilePopup.setEventListeners()
 avatarPopup.setEventListeners()
 
 
-section.rendderItems()
+ section.rendderItems()
 
 const userInfo = new UserInfo ({ profileNameSelector: '.user__name', profileJobSelectore: '.user__info', profileAvatar: '.user__image'})
