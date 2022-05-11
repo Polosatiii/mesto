@@ -35,8 +35,13 @@ export const initialCards = [
     errorClass: 'popup__error_visible'
   };
 
+ 
+
   export const ESC_KEYCODE = 27;
 
+
+  export const popupAvatar = document.querySelector('.popup_edit-avatar')
+  export const userEditAvatar = document.querySelector('.user__image')
   export const popupEditProfile = document.querySelector('.popup_edit-profile'); 
   export const userEditButton = document.querySelector('.user__add-info'); 
   export const nameField = document.querySelector('.popup__input_element_user-name');

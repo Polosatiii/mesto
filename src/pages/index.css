@@ -5,6 +5,7 @@
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/user/user.css);
 @import url(../blocks/user/__description/user__description.css);
+@import url(../blocks/user/__image-container.css);
 @import url(../blocks/user/__photo/user__photo.css);
 @import url(../blocks/user/__image/user__image.css);
 @import url(../blocks/user/__name/user__name.css);
@@ -18,7 +19,9 @@
 @import url(../blocks/user-gallery/__caption/user-gallery__caption.css);
 @import url(../blocks/user-gallery/__photo/user-gallery__photo.css);
 @import url(../blocks/user-gallery/__photo-name/user-gallery__photo-name.css);
+@import url(../blocks/user-gallery/__like-container.css);
 @import url(../blocks/user-gallery/__like-b/user-gallery__like-b.css);
+@import url(../blocks/user-gallery/__like-count/__like-count.css);
 @import url(../blocks/user-gallery/__like-b/_active/user-gallery__like-b_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__project-name/footer__project-name.css);
